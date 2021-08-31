@@ -1,91 +1,77 @@
-# imap
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/bolderflight/software/imap.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/integrations/)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://docs.gitlab.com/ee/user/clusters/agent/)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:599375f41b0a216ad76f853afd568f39?https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+# Imap (integer mapping)
+Functions to compute the number of bytes, scale factor, and bias to map a floating point value to an integer, given a range and the desired precision.
+   * [License](LICENSE.md)
+   * [Changelog](CHANGELOG.md)
+   * [Contributing guide](CONTRIBUTING.md)
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+CMake is used to build this library, which is exported as a library target called *imap*. The header is added as:
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```
+#include "imap/imap.h"
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+The library can be also be compiled stand-alone using the CMake idiom of creating a *build* directory and then, from within that directory issuing:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```
+cmake ..
+make
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+This will build the library, an example executable called *imap_example*, and an executable for testing using the Google Test framework, called *imap_test*. The example executable source file is located at *examples/imap_example.cc*.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Namespace
+This library is within the namespace *bfs*.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Mapping
+Floating point data should be mapped to an integer by:
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```
+I = round(F * S + B)
+```
 
-## License
-For open source projects, say how it is licensed.
+Where *F* is the floating point value, *S* is the scale factor, and *B* is the bias. A rounding operation, should be used to convert the resulting floating point value to an integer. To convert back to floating point, the following algorithm should be used:
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```
+F = (I - B) / S
+```
 
+## Data Structure
+All of the functions return the *ImapData* structure. The structure is templated with respect to the floating point type to represent the scale factor and bias.
+
+| Type | Field Name | Description |
+| --- | --- | --- |
+| std::size_t | num_bytes | The maximum number of bytes needed for storage |
+| T | scale_factor | The scale factor, *S*, above |
+| T | bias | The bias, *B*, above |
+
+## Functions
+Four versions of this algorithm were developed. Two mapping the floating value to a signed integer and two mapping to an unsigned integer. For each, a regular and a greedy version of the algorithm was created. If the range and precision required 1.2 bytes of storage, both versions will need at least 2 bytes of space. The greedy version of the algorithm fully uses the 2 bytes of space to store the same range, improving the precision. The regular version uses the scale factor associated with the original 1.2 byte size requirement leaving the additional storage unused or providing for a greater range of values.
+
+Why would you not always use the greedy version? If you're storing the data in a variable sized integer (i.e. LEB128 or ULEB128) you may want to use the normal version to increase the liklihood that you don't need the full range of bytes leading to storage (or wire) space savings.
+
+**ImapData<T> ImapConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer.
+
+```C++
+/* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
+bfs::ImapData<float> gyro_mapping = bfs::ImapConfig(-2000.0f, 2000.0f, 0.1f);
+```
+
+**ImapData<T> ImapGreedyConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer. This version will fully use the bytes required, improving the precision.
+```C++
+/* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
+bfs::ImapData<float> gyro_mapping = bfs::ImapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
+```
+
+**ImapData<T> UimapConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer.
+
+```C++
+/* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
+bfs::ImapData<float> gyro_mapping = bfs::UimapConfig(-2000.0f, 2000.0f, 0.1f);
+```
+
+**ImapData<T> UimapGreedyConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer. This version will fully use the bytes required, improving the precision.
+```C++
+/* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
+bfs::ImapData<float> gyro_mapping = bfs::UimapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
+```
