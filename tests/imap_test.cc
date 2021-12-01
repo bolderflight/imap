@@ -24,7 +24,7 @@
 */
 
 
-#include "imap/imap.h"
+#include "imap.h"
 #include "gtest/gtest.h"
 
 /* Test example input */
