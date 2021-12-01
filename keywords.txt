@@ -1,0 +1,5 @@
+ImapConfig	KEYWORD2
+ImapGreedyConfig	KEYWORD2
+UimapConfig	KEYWORD2
+UimapGreedyConfig	KEYWORD2
+ImapData	KEYWORD3

@@ -23,10 +23,9 @@
 * IN THE SOFTWARE.
 */
 
-#include "imap/imap.h"
-#include <iostream>
+#include "imap.h"
 
-int main() {
+void setup() {
   /* Mapping output, single precision */
   bfs::ImapData<float> gyro_mapping;
   /*
@@ -34,37 +33,51 @@ int main() {
   * 0.1 deg/s precision)
   */
   gyro_mapping = bfs::ImapConfig(-2000.0f, 2000.0f, 0.1f);
-  std::cout << "Gyro Map to Signed Integer:" << std::endl;
-  std::cout << "Bytes: " << gyro_mapping.num_bytes << std::endl;
-  std::cout << "Scale factor: " << gyro_mapping.scale_factor << std::endl;
-  std::cout << "Bias: " << gyro_mapping.bias << std::endl << std::endl;
+  Serial.println("Gyro Map to Signed Integer:");
+  Serial.print("Bytes: ");
+  Serial.println(gyro_mapping.num_bytes);
+  Serial.print("Scale factor: ");
+  Serial.println(gyro_mapping.scale_factor);
+  Serial.print("Bias: ");
+  Serial.println(gyro_mapping.bias);
   /*
   * Get configuration to map to a signed integer using a greedy algorith, which
   * will compute the required bytes and fully use the bytes required improving
   * the precision. Gyro example (+/-2000 deg/s, 0.1 deg/s precision)
   */
   gyro_mapping = bfs::ImapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
-  std::cout << "Gyro Map to Signed Integer, Greedy:" << std::endl;
-  std::cout << "Bytes: " << gyro_mapping.num_bytes << std::endl;
-  std::cout << "Scale factor: " << gyro_mapping.scale_factor << std::endl;
-  std::cout << "Bias: " << gyro_mapping.bias << std::endl << std::endl;
+  Serial.println("Gyro Map to Signed Integer, Greedy:");
+  Serial.print("Bytes: ");
+  Serial.println(gyro_mapping.num_bytes);
+  Serial.print("Scale factor: ");
+  Serial.println(gyro_mapping.scale_factor);
+  Serial.print("Bias: ");
+  Serial.println(gyro_mapping.bias);
   /*
   * Get configuration to map to a unsigned integer, gyro example (+/-2000 deg/s,
   * 0.1 deg/s precision)
   */
   gyro_mapping = bfs::UimapConfig(-2000.0f, 2000.0f, 0.1f);
-  std::cout << "Gyro Map to Unsigned Integer:" << std::endl;
-  std::cout << "Bytes: " << gyro_mapping.num_bytes << std::endl;
-  std::cout << "Scale factor: " << gyro_mapping.scale_factor << std::endl;
-  std::cout << "Bias: " << gyro_mapping.bias << std::endl << std::endl;
+  Serial.println("Gyro Map to Unsigned Integer:");
+  Serial.print("Bytes: ");
+  Serial.println(gyro_mapping.num_bytes);
+  Serial.print("Scale factor: ");
+  Serial.println(gyro_mapping.scale_factor);
+  Serial.print("Bias: ");
+  Serial.println(gyro_mapping.bias);
   /*
   * Get configuration to map to a unsigned integer using a greedy algorith,
   * which will compute the required bytes and fully use the bytes required
   * improving the precision. Gyro example (+/-2000 deg/s, 0.1 deg/s precision)
   */
   gyro_mapping = bfs::UimapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
-  std::cout << "Gyro Map to Unsigned Integer, Greedy:" << std::endl;
-  std::cout << "Bytes: " << gyro_mapping.num_bytes << std::endl;
-  std::cout << "Scale factor: " << gyro_mapping.scale_factor << std::endl;
-  std::cout << "Bias: " << gyro_mapping.bias << std::endl << std::endl;
+  Serial.println("Gyro Map to Unsigned Integer, Greedy:");
+  Serial.print("Bytes: ");
+  Serial.println(gyro_mapping.num_bytes);
+  Serial.print("Scale factor: ");
+  Serial.println(gyro_mapping.scale_factor);
+  Serial.print("Bias: ");
+  Serial.println(gyro_mapping.bias);
 }
+
+void loop() {}

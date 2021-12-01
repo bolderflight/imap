@@ -23,9 +23,12 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef INCLUDE_IMAP_IMAP_H_
-#define INCLUDE_IMAP_IMAP_H_
+#ifndef SRC_IMAP_H_
+#define SRC_IMAP_H_
 
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
 #include <cstdint>
 #include <cmath>
 #include <type_traits>
@@ -139,4 +142,4 @@ ImapData<T> UimapGreedyConfig(T min, T max, T precision) {
 
 }  // namespace bfs
 
-#endif  // INCLUDE_IMAP_IMAP_H_
+#endif  // SRC_IMAP_H_
