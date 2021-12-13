@@ -2,7 +2,7 @@
 
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
-# Imap (integer mapping)
+# Imap (float to integer mapping)
 Functions to compute the number of bytes, scale factor, and bias to map a floating point value to an integer, given a range and the desired precision. This library is compatible with Arduino ARM and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
@@ -65,27 +65,29 @@ Four versions of this algorithm were developed. Two mapping the floating value t
 
 Why would you not always use the greedy version? If you're storing the data in a variable sized integer (i.e. LEB128 or ULEB128) you may want to use the normal version to increase the liklihood that you don't need the full range of bytes leading to storage (or wire) space savings.
 
-**ImapData<T> ImapConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer.
+**ImapData<T> ImapConfig(const T min, const T max, const T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer.
 
 ```C++
 /* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
 bfs::ImapData<float> gyro_mapping = bfs::ImapConfig(-2000.0f, 2000.0f, 0.1f);
 ```
 
-**ImapData<T> ImapGreedyConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer. This version will fully use the bytes required, improving the precision.
+**ImapData<T> ImapGreedyConfig(const T min, const T max, const T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to a signed integer. This version will fully use the bytes required, improving the precision.
+
 ```C++
 /* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
 bfs::ImapData<float> gyro_mapping = bfs::ImapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
 ```
 
-**ImapData<T> UimapConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer.
+**ImapData<T> UimapConfig(const T min, const T max, const T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer.
 
 ```C++
 /* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
 bfs::ImapData<float> gyro_mapping = bfs::UimapConfig(-2000.0f, 2000.0f, 0.1f);
 ```
 
-**ImapData<T> UimapGreedyConfig(T min, T max, T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer. This version will fully use the bytes required, improving the precision.
+**ImapData<T> UimapGreedyConfig(const T min, const T max, const T precision)** Computes and returns the *ImapData* structure given the floating point minimum and maximum values along with the desired precision. The mapping is computed to an unsigned integer. This version will fully use the bytes required, improving the precision.
+
 ```C++
 /* Map gyro data (+/-2000 deg/s range, 0.1 deg/s precision) */
 bfs::ImapData<float> gyro_mapping = bfs::UimapGreedyConfig(-2000.0f, 2000.0f, 0.1f);
