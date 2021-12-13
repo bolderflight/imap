@@ -43,7 +43,7 @@ struct ImapData {
 };
 
 template<typename T>
-ImapData<T> ImapConfig(T min, T max, T precision) {
+ImapData<T> ImapConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -67,7 +67,7 @@ ImapData<T> ImapConfig(T min, T max, T precision) {
 }
 
 template<typename T>
-ImapData<T> UimapConfig(T min, T max, T precision) {
+ImapData<T> UimapConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -91,7 +91,7 @@ ImapData<T> UimapConfig(T min, T max, T precision) {
 }
 
 template<typename T>
-ImapData<T> ImapGreedyConfig(T min, T max, T precision) {
+ImapData<T> ImapGreedyConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -116,7 +116,7 @@ ImapData<T> ImapGreedyConfig(T min, T max, T precision) {
 }
 
 template<typename T>
-ImapData<T> UimapGreedyConfig(T min, T max, T precision) {
+ImapData<T> UimapGreedyConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
