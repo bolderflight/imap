@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 # Project information
 project(Imap
-  VERSION 2.0.1
+  VERSION 2.0.2
   DESCRIPTION "Floating point to integer mapping."
   LANGUAGES CXX
 )
