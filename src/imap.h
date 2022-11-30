@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2022 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -43,7 +43,7 @@ struct ImapData {
 };
 
 template<typename T>
-ImapData<T> ImapConfig(const T min, const T max, const T precision) {
+constexpr ImapData<T> ImapConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -67,7 +67,7 @@ ImapData<T> ImapConfig(const T min, const T max, const T precision) {
 }
 
 template<typename T>
-ImapData<T> UimapConfig(const T min, const T max, const T precision) {
+constexpr ImapData<T> UimapConfig(const T min, const T max, const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -91,7 +91,8 @@ ImapData<T> UimapConfig(const T min, const T max, const T precision) {
 }
 
 template<typename T>
-ImapData<T> ImapGreedyConfig(const T min, const T max, const T precision) {
+constexpr ImapData<T> ImapGreedyConfig(const T min, const T max,
+                                       const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
@@ -116,7 +117,8 @@ ImapData<T> ImapGreedyConfig(const T min, const T max, const T precision) {
 }
 
 template<typename T>
-ImapData<T> UimapGreedyConfig(const T min, const T max, const T precision) {
+constexpr ImapData<T> UimapGreedyConfig(const T min, const T max,
+                                        const T precision) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   /* Number of bytes needed */
