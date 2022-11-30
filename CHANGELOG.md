@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.3
+- Updated google test to latest version
+
 ## v2.0.2
 - Updated minimum CMake version to 3.14 to support FetchContent_MakeAvailable
 
