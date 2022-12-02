@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.2.0
+- Added max, min, and resolution metadata
+
 ## v2.1.0
 - Added constexpr
 

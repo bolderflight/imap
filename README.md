@@ -59,6 +59,9 @@ All of the functions return the *ImapData* structure. The structure is templated
 | std::size_t | num_bytes | The maximum number of bytes needed for storage |
 | T | scale_factor | The scale factor, *S*, above |
 | T | bias | The bias, *B*, above |
+| T | min | The input minimum value |
+| T | max | The input maximum value |
+| T | precision | The input precision |
 
 # Functions
 Four versions of this algorithm were developed. Two mapping the floating value to a signed integer and two mapping to an unsigned integer. For each, a regular and a greedy version of the algorithm was created. If the range and precision required 1.2 bytes of storage, both versions will need at least 2 bytes of space. The greedy version of the algorithm fully uses the 2 bytes of space to store the same range, improving the precision. The regular version uses the scale factor associated with the original 1.2 byte size requirement leaving the additional storage unused or providing for a greater range of values.

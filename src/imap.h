@@ -40,6 +40,9 @@ struct ImapData {
   std::size_t num_bytes;
   T scale_factor;
   T bias;
+  T min;
+  T max;
+  T precision;
 };
 
 template<typename T>
@@ -63,6 +66,9 @@ constexpr ImapData<T> ImapConfig(const T min, const T max, const T precision) {
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
   ret.bias = bias;
+  ret.min = min;
+  ret.max = max;
+  ret.precision = precision;
   return ret;
 }
 
@@ -87,6 +93,9 @@ constexpr ImapData<T> UimapConfig(const T min, const T max, const T precision) {
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
   ret.bias = bias;
+  ret.min = min;
+  ret.max = max;
+  ret.precision = precision;
   return ret;
 }
 
@@ -113,6 +122,9 @@ constexpr ImapData<T> ImapGreedyConfig(const T min, const T max,
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
   ret.bias = bias;
+  ret.min = min;
+  ret.max = max;
+  ret.precision = precision;
   return ret;
 }
 
@@ -139,6 +151,9 @@ constexpr ImapData<T> UimapGreedyConfig(const T min, const T max,
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
   ret.bias = bias;
+  ret.min = min;
+  ret.max = max;
+  ret.precision = precision;
   return ret;
 }
 
