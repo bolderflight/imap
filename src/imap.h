@@ -115,7 +115,6 @@ constexpr ImapData<T> ImapGreedyConfig(const T min, const T max,
   T bits = std::ceil(std::log2(vals));
   T bytes = std::ceil(bits / static_cast<T>(8));
   bits = bytes * static_cast<T>(8);
-  std::cout << bits << std::endl;
   /* Find the scale factor and bias */
   std::array<T, 2> x = {min, max};
   std::array<T, 2> y = {static_cast<T>(-1) *

@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.3.2
+- Removing debug statements
+
 ## v2.3.1
 - Accidentally had iostream in the includes (debugging and left in)
 
