@@ -33,7 +33,6 @@
 #include <cmath>
 #include <type_traits>
 #include <array>
-#include <iostream>
 #include "polytools.h"  // NOLINT
 
 namespace bfs {
