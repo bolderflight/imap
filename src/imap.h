@@ -32,6 +32,9 @@
 #include <cstdint>
 #include <cmath>
 #include <type_traits>
+#include <array>
+#include <iostream>
+#include "polytools.h"  // NOLINT
 
 namespace bfs {
 
@@ -54,14 +57,17 @@ constexpr ImapData<T> ImapConfig(const T min, const T max, const T precision) {
            static_cast<T>(2);
   T bits = std::ceil(std::log2(vals));
   T bytes = std::ceil(bits / static_cast<T>(8));
-  /*
-  * Find the scale factor
-  * We're using integer range of 2^n - 2 for signed ints
-  */
-  T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(2)) / (max - min);
-  /* Find the bias */
-  T bias = static_cast<T>(-1) * (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(2)) / static_cast<T>(2) - sf * min;
+  /* Find the scale factor and bias */
+  std::array<T, 2> x = {min, max};
+  std::array<T, 2> y = {static_cast<T>(-1) *
+                        (std::pow(static_cast<T>(2), bits) - static_cast<T>(2))
+                        / static_cast<T>(2),
+                        (std::pow(static_cast<T>(2), bits) - static_cast<T>(2))
+                        / static_cast<T>(2)};
+  std::array<T, 2> p = linearmap(x, y);
+  T sf = p[0];
+  T bias = p[1];
+  /* Return struct */
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -81,13 +87,14 @@ constexpr ImapData<T> UimapConfig(const T min, const T max, const T precision) {
            static_cast<T>(1);
   T bits = std::ceil(std::log2(vals));
   T bytes = std::ceil(bits / static_cast<T>(8));
-  /*
-  * Find the scale factor
-  * We're using integer range of 2^n - 1 for unsigned ints
-  */
-  T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(1)) / (max - min);
-  /* Find the bias */
-  T bias = static_cast<T>(0) - sf * min;
+  /* Find the scale factor and bias */
+  std::array<T, 2> x = {min, max};
+  std::array<T, 2> y = {static_cast<T>(0),
+                        std::pow(static_cast<T>(2), bits) - static_cast<T>(1)};
+  std::array<T, 2> p = linearmap(x, y);
+  T sf = p[0];
+  T bias = p[1];
+  /* Return struct */
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -109,14 +116,18 @@ constexpr ImapData<T> ImapGreedyConfig(const T min, const T max,
   T bits = std::ceil(std::log2(vals));
   T bytes = std::ceil(bits / static_cast<T>(8));
   bits = bytes * static_cast<T>(8);
-  /*
-  * Find the scale factor
-  * We're using integer range of 2^n - 2 for signed ints
-  */
-  T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(2)) / (max - min);
-  /* Find the bias */
-  T bias = static_cast<T>(-1) * (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(2)) / static_cast<T>(2) - sf * min;
+  std::cout << bits << std::endl;
+  /* Find the scale factor and bias */
+  std::array<T, 2> x = {min, max};
+  std::array<T, 2> y = {static_cast<T>(-1) *
+                        (std::pow(static_cast<T>(2), bits) - static_cast<T>(2))
+                        / static_cast<T>(2),
+                        (std::pow(static_cast<T>(2), bits) - static_cast<T>(2))
+                        / static_cast<T>(2)};
+  std::array<T, 2> p = linearmap(x, y);
+  T sf = p[0];
+  T bias = p[1];
+  /* Return struct */
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -138,13 +149,14 @@ constexpr ImapData<T> UimapGreedyConfig(const T min, const T max,
   T bits = std::ceil(std::log2(vals));
   T bytes = std::ceil(bits / static_cast<T>(8));
   bits = bytes * static_cast<T>(8);
-  /*
-  * Find the scale factor
-  * We're using integer range of 2^n - 1 for unsigned ints
-  */
-  T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(1)) / (max - min);
-  /* Find the bias */
-  T bias = static_cast<T>(0) - sf * min;
+  /* Find the scale factor and bias */
+  std::array<T, 2> x = {min, max};
+  std::array<T, 2> y = {static_cast<T>(0),
+                        std::pow(static_cast<T>(2), bits) - static_cast<T>(1)};
+  std::array<T, 2> p = linearmap(x, y);
+  T sf = p[0];
+  T bias = p[1];
+  /* Return struct */
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;

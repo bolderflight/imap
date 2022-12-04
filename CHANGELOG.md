@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.3.0
+- Using the linearmap tool from polytools to calculate scale factor and bias
+
 ## v2.2.1
 - Fixed bug in bias calculation
 
