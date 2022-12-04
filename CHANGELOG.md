@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.2.1
+- Fixed bug in bias calculation
+
 ## v2.2.0
 - Added max, min, and resolution metadata
 

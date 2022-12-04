@@ -60,8 +60,8 @@ constexpr ImapData<T> ImapConfig(const T min, const T max, const T precision) {
   */
   T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(2)) / (max - min);
   /* Find the bias */
-  T bias = sf * min + (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(2)) / static_cast<T>(2);
+  T bias = static_cast<T>(-1) * (std::pow(static_cast<T>(2), bits) -
+           static_cast<T>(2)) / static_cast<T>(2) - sf * min;
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -87,8 +87,7 @@ constexpr ImapData<T> UimapConfig(const T min, const T max, const T precision) {
   */
   T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(1)) / (max - min);
   /* Find the bias */
-  T bias = sf * min + (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(1));
+  T bias = static_cast<T>(0) - sf * min;
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -116,8 +115,8 @@ constexpr ImapData<T> ImapGreedyConfig(const T min, const T max,
   */
   T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(2)) / (max - min);
   /* Find the bias */
-  T bias = sf * min + (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(2)) / static_cast<T>(2);
+  T bias = static_cast<T>(-1) * (std::pow(static_cast<T>(2), bits) -
+           static_cast<T>(2)) / static_cast<T>(2) - sf * min;
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
@@ -145,8 +144,7 @@ constexpr ImapData<T> UimapGreedyConfig(const T min, const T max,
   */
   T sf = (std::pow(static_cast<T>(2), bits) - static_cast<T>(1)) / (max - min);
   /* Find the bias */
-  T bias = sf * min + (std::pow(static_cast<T>(2), bits) -
-           static_cast<T>(1));
+  T bias = static_cast<T>(0) - sf * min;
   ImapData<T> ret;
   ret.num_bytes = static_cast<std::size_t>(bytes);
   ret.scale_factor = sf;
