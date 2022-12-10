@@ -11,7 +11,7 @@ Functions to compute the number of bytes, scale factor, and bias to map a floati
 # Installation
 
 ## Arduino
-Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. This library is added as:
+Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. Additionally, the [Bolder Flight Systems Polytools library](https://github.com/bolderflight/polytools) must be installed. This library is added as:
 
 ```C++
 #include "imap.h"
@@ -45,7 +45,7 @@ Floating point data should be mapped to an integer by:
 I = round(F * S + B)
 ```
 
-Where *F* is the floating point value, *S* is the scale factor, and *B* is the bias. A rounding operation, should be used to convert the resulting floating point value to an integer. To convert back to floating point, the following algorithm should be used:
+Where *F* is the floating point value, *S* is the scale factor, and *B* is the bias. A rounding operation should be used to convert the resulting floating point value to an integer. To convert back to floating point, the following algorithm should be used:
 
 ```
 F = (I - B) / S
